@@ -1,0 +1,12 @@
+com\app\dao\impl\CandidateDaoImpl.class
+com\app\dao\impl\CandidateDaoImpl$1.class
+com\app\service\CandidateService.class
+com\app\configuration\WebInitializer.class
+com\app\model\FresherCandidate.class
+com\app\dao\CandidateDao.class
+com\app\controller\CandidateController.class
+com\app\model\Candidate.class
+com\app\model\InternCandidate.class
+com\app\model\ExperienceCandidate.class
+com\app\configuration\SpringConfiguration.class
+com\app\service\impl\CandidateServiceImpld.class
