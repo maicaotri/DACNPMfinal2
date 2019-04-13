@@ -8,5 +8,7 @@ public interface CandidateDao {
 
 	public void add(Candidate candidate);
 	
-	public List<Candidate> geAllCanditate();
+	public List<Candidate> getAllCanditate();
+	
+	public Candidate getById(int id);
 }

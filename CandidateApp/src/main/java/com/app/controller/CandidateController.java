@@ -34,7 +34,8 @@ public class CandidateController {
 	}
 
 	@RequestMapping(value = "/addCandidate", method = RequestMethod.POST)
-	public ModelAndView addCandidate(HttpServletRequest request, @RequestParam(name = "firstName", required = true) String firstName,
+	public ModelAndView addCandidate(HttpServletRequest request,
+			@RequestParam(name = "firstName", required = true) String firstName,
 			@RequestParam(name = "lastName", required = true) String lastName,
 			@RequestParam(name = "birthDate", required = true) int birthDate,
 			@RequestParam(name = "address", required = true) String address,
@@ -55,7 +56,7 @@ public class CandidateController {
 		StringBuilder errPhone = new StringBuilder();
 		StringBuilder errEmail = new StringBuilder();
 		StringBuilder errExpInYear = new StringBuilder();
-		String graduationRankName =null;
+		String graduationRankName = null;
 
 		if (typeOfCandidate.equals("Experience_candidate")) {
 			c = new ExperienceCandidate();
@@ -121,6 +122,10 @@ public class CandidateController {
 			c.setTypeOfCandidate(typeOfCandidate);
 			candidateService.add(c);
 		}
+
+		request.setAttribute("errPhone", errPhone);
+		request.setAttribute("errEmail", errEmail);
+		request.setAttribute("errExpInYear", errExpInYear);
 		List<Candidate> list = candidateService.geAllCanditate();
 		request.setAttribute("list", list);
 		return new ModelAndView("lisCandidate");

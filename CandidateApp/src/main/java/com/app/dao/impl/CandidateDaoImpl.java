@@ -28,9 +28,62 @@ public class CandidateDaoImpl implements CandidateDao {
 				c.getGraduationRank(), c.getEducation(), c.getMajors(), c.getSemester(), c.getUniversityName());
 	}
 
-	public List<Candidate> geAllCanditate() {
+	public List<Candidate> getAllCanditate() {
 		String sql = "SELECT * FROM candidate";
 		return jdbcTemplate.query(sql, new Object[] {}, new RowMapper<Candidate>() {
+
+			public Candidate mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Candidate c = null;
+				if (rs.getString("type_of_candidate").equals("Experience_candidate")) {
+					c = new ExperienceCandidate();
+					c.setId(rs.getInt("id"));
+					c.setFirstName(rs.getString("firstName"));
+					c.setLastName(rs.getString("lastName"));
+					c.setBirthDate(rs.getInt("birthDate"));
+					c.setPhone(rs.getString("phone"));
+					c.setEmail(rs.getString("email"));
+					c.setAddress(rs.getString("address"));
+					c.setExpInYear(rs.getInt("expInYear"));
+					c.setTypeOfCandidate(rs.getString("type_of_candidate"));
+					c.setProSkill(rs.getString("proSkill"));
+				}
+				if (rs.getString("type_of_candidate").equals("Fresher_candidate")) {
+					c = new FresherCandidate();
+					c.setId(rs.getInt("id"));
+					c.setFirstName(rs.getString("firstName"));
+					c.setLastName(rs.getString("lastName"));
+					c.setBirthDate(rs.getInt("birthDate"));
+					c.setPhone(rs.getString("phone"));
+					c.setEmail(rs.getString("email"));
+					c.setAddress(rs.getString("address"));
+					c.setTypeOfCandidate(rs.getString("type_of_candidate"));
+					c.setGraduationDate(rs.getDate("graduation_date"));
+					c.setGraduationRank(rs.getString("graduation_rank"));
+					c.setEducation(rs.getString("education"));
+				}
+				if (rs.getString("type_of_candidate").equals("Intern_candidate")) {
+					c = new InternCandidate();
+					c.setId(rs.getInt("id"));
+					c.setFirstName(rs.getString("firstName"));
+					c.setLastName(rs.getString("lastName"));
+					c.setBirthDate(rs.getInt("birthDate"));
+					c.setPhone(rs.getString("phone"));
+					c.setEmail(rs.getString("email"));
+					c.setAddress(rs.getString("address"));
+					c.setTypeOfCandidate(rs.getString("type_of_candidate"));
+					c.setMajors(rs.getString("majors"));
+					c.setSemester(rs.getInt("semester"));
+					c.setUniversityName(rs.getString("university_name"));
+				}
+
+				return c;
+			}
+		});
+	}
+
+	public Candidate getById(int id) {
+		String sql = "SELECT * FROM candidate where id =?";
+		return jdbcTemplate.queryForObject(sql, new Object[] {id}, new RowMapper<Candidate>() {
 
 			public Candidate mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Candidate c = null;

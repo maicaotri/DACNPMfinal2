@@ -10,6 +10,7 @@
 </head>
 <body>
 <h2>Danh sach ung vien</h2>
+<a href="${pageContext.request.contextPath}/addCandidate">Them ung vien</a>
 <br>
 <table>
 <tr>

@@ -9,4 +9,6 @@ public interface CandidateService {
 	public void add(Candidate candidate);
 	
 	public List<Candidate> geAllCanditate();
+	
+	public Candidate getById(int id);
 }

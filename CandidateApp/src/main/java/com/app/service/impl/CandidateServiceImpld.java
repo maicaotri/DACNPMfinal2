@@ -19,7 +19,11 @@ public class CandidateServiceImpld implements CandidateService {
 	}
 
 	public List<Candidate> geAllCanditate() {
-		return candidateDao.geAllCanditate();
+		return candidateDao.getAllCanditate();
+	}
+
+	public Candidate getById(int id) {
+		return candidateDao.getById(id);
 	}
 
 }
