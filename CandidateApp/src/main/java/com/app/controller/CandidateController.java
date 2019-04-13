@@ -19,6 +19,7 @@ import com.app.model.Candidate;
 import com.app.model.ExperienceCandidate;
 import com.app.model.FresherCandidate;
 import com.app.model.InternCandidate;
+import com.app.model.Recruitment;
 import com.app.service.CandidateService;
 
 @Controller
@@ -28,11 +29,16 @@ public class CandidateController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getAllUser(HttpServletRequest request) {
-		List<Candidate> list = candidateService.geAllCanditate();
+		List<Candidate> list = candidateService.getAllCanditate();
 		request.setAttribute("list", list);
 		return new ModelAndView("lisCandidate");
 	}
 
+	@RequestMapping(value = "/addCandidate", method = RequestMethod.GET)
+	public ModelAndView getAddCandidatePage(HttpServletRequest request) {
+		return new ModelAndView("addCandidate");
+	}
+	
 	@RequestMapping(value = "/addCandidate", method = RequestMethod.POST)
 	public ModelAndView addCandidate(HttpServletRequest request,
 			@RequestParam(name = "firstName", required = true) String firstName,
@@ -56,6 +62,7 @@ public class CandidateController {
 		StringBuilder errPhone = new StringBuilder();
 		StringBuilder errEmail = new StringBuilder();
 		StringBuilder errExpInYear = new StringBuilder();
+		boolean success = false;
 		String graduationRankName = null;
 
 		if (typeOfCandidate.equals("Experience_candidate")) {
@@ -121,14 +128,19 @@ public class CandidateController {
 			c.setEmail(email);
 			c.setTypeOfCandidate(typeOfCandidate);
 			candidateService.add(c);
+			success = true;
 		}
 
 		request.setAttribute("errPhone", errPhone);
 		request.setAttribute("errEmail", errEmail);
 		request.setAttribute("errExpInYear", errExpInYear);
-		List<Candidate> list = candidateService.geAllCanditate();
+		List<Candidate> list = candidateService.getAllCanditate();
+		if(success == true) {
 		request.setAttribute("list", list);
 		return new ModelAndView("lisCandidate");
+		}else {
+			return new ModelAndView("addCandidate");
+		}
 	}
 
 }

@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+${errPhone}<br>
+${errEmail}<br>
+${errExpInYear}<br>
 <h2>Them ung vien</h2>
 <form action="${pageContext.request.contextPath}/addCandidate" method="post">
 firstName<input name="firstName" type="text"> <br>

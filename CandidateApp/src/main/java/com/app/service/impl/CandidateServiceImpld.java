@@ -18,7 +18,7 @@ public class CandidateServiceImpld implements CandidateService {
 		candidateDao.add(candidate);
 	}
 
-	public List<Candidate> geAllCanditate() {
+	public List<Candidate> getAllCanditate() {
 		return candidateDao.getAllCanditate();
 	}
 

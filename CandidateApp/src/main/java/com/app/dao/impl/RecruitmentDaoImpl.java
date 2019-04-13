@@ -39,7 +39,7 @@ public class RecruitmentDaoImpl implements RecruitmentDao {
 	}
 
 	public Recruitment getById(int id) {
-		String sql = "SELECT * FROM recruitment WHERE id =?";
+		String sql = "SELECT * FROM recruitment WHERE recruitment_code =?";
 		return jdbcTemplate.queryForObject(sql, new Object[] { id }, new RowMapper<Recruitment>() {
 
 			public Recruitment mapRow(ResultSet rs, int rowNum) throws SQLException {

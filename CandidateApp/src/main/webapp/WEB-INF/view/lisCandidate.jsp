@@ -9,8 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>Danh sach ung vien</h2>
-<a href="${pageContext.request.contextPath}/addCandidate">Them ung vien</a>
+<h2>Danh sách ứng viên</h2>
+<a href="${pageContext.request.contextPath}/addCandidate">Thêm ứng viên</a> <br>
+<a href="${pageContext.request.contextPath}/recruiment">Thêm ứng viên vào đợt tuyển</a>
 <br>
 <table>
 <tr>
